@@ -17,6 +17,7 @@ button {
   cursor: pointer;
 }
 
+/* navbar */
 .navbar {
   display: flex;
   justify-content: center;
@@ -44,6 +45,7 @@ button {
   flex-direction: column;
 }
 
+/* input field */
 .input {
   display: flex;
   justify-content: center;
@@ -61,10 +63,13 @@ button {
 .input__btn {
   font-size: 1.5rem;
   padding: 0.2em 0.5em;
+  border-radius: 0.5rem;
   margin-left: 0.5em;
   background-color: darkseagreen;
+  color: white;
 }
 
+/* habits */
 .habit {
   display: flex; /*수정함*/
   justify-self: center;
@@ -105,4 +110,15 @@ button {
 .habit-delete {
   font-size: 2rem;
   color: red;
+}
+
+/* reset button */
+.reset {
+  font-size: 2rem;
+  width: 10rem;
+  padding: 0.2rem 1rem;
+  align-self: center;
+  background-color: darkseagreen;
+  color: white;
+  border-radius: 0.5rem;
 }

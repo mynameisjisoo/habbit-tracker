@@ -18,6 +18,7 @@ class App extends Component {
         <body className='main'>
           <Input />
           <Habits />
+          <button className='reset'>Reset All</button>
         </body>
       </>
     );
