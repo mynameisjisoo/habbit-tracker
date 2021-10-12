@@ -1,20 +1,82 @@
+body {
+  font-family: cursive;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  width: 100%;
+  justify-content: center;
+}
+
 button {
   outline: none;
   border: 0;
   cursor: pointer;
 }
 
+.navbar {
+  display: flex;
+  justify-content: center;
+  font-size: 2.5em;
+  padding: 0.5em 0;
+  background-color: mistyrose;
+}
+
+.navbar__logo {
+  color: darkseagreen;
+  margin-right: 0.5em;
+}
+
+.navbar__count {
+  margin-left: 0.5em;
+  background-color: darkseagreen;
+  color: white;
+  border-radius: 50%;
+  padding: 0 0.2em;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 1.5em;
+}
+
+.input__textfield {
+  width: 20rem;
+  height: 2rem;
+  font-size: 1.5rem;
+  color: gray;
+}
+
+.input__btn {
+  font-size: 1.5rem;
+  padding: 0.2em 0.5em;
+  margin-left: 0.5em;
+  background-color: darkseagreen;
+}
+
 .habit {
-  font-size: 2.5rem;
+  display: flex; /*수정함*/
+  justify-self: center;
+  font-size: 2rem;
   padding: 0.5em;
   list-style: none;
-  font-family: cursive;
 }
 
 .habit-count {
   display: inline-block;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   width: 2.5rem;
   height: 2.5rem;
   line-height: 2.5rem;
@@ -24,11 +86,13 @@ button {
   color: white;
   border-radius: 50%;
 }
+
 .habit-button {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin: 0 0.1em;
   background-color: transparent;
 }
+
 .habit-button:hover {
   opacity: 0.8;
 }

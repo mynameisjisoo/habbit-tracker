@@ -12,7 +12,7 @@ class Habits extends Component {
   handleIncrement = habit => {
     const habits = [...this.state.habits];
     const index = habits.indexOf(habit);
-    habits[index].count++; //💩복사했어도 직접 수정한 걸 반영하는 것이기 떄문에 좋지 않은 코드
+    habits[index].count++; //💩 spread syntax이용해서 복사해도 다차원객체는 주소값이 복사됨 (=원본객체에 영향줌)
     /* this.setState({ habits: habits});  key인 habits(왼쪽, state의 habits)에 로컬변수habit(오른쪽)배열을 넣는다<div className=""></div>
     habits:habits 처럼 key와 value가 동일한 이름이면 하나로 생략 가능 */
     this.setState({ habits });
@@ -20,24 +20,23 @@ class Habits extends Component {
 
   handleDecrement = habit => {
     const habits = [...this.state.habits];
-    console.log(habits === this.state.habits);
-    // const index = habits.indexOf(habit);
-    // const count = habits[index].count - 1;
-    // habits[index].count = count < 0 ? 0 : count; //💩
-    // this.setState({ habits });
+    const index = habits.indexOf(habit);
+    const count = habits[index].count - 1;
+    habits[index].count = count < 0 ? 0 : count; //💩
+    this.setState({ habits });
   };
 
   handleDelete = habit => {
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    habits.splice(index, 1);
+    // filter을 이용해서 수정사항을 반영한 배열을 생성함
+    const habits = this.state.habits.filter(item => item.id !== habit.id);
     this.setState({ habits });
 
-    //다른 방법 : filter을 이용해서 수정사항을 반영한 배열을 생성함
-    // {
-    //   const habits = this.state.habits.filter(item => item.id !== habit.id);
+    //   다른방법: splice이용{
+    //   const habits = [...this.state.habits];
+    //   const index = habits.indexOf(habit);
+    //   habits.splice(index, 1);
     //   this.setState({ habits });
-    // }
+    //  }
   };
 
   render() {
