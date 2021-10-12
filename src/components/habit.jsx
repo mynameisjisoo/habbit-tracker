@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 
 class Habit extends Component {
-  state = {
-    count: 0
-  };
+  //Habit는 자체적으로 갖고있는 state는 없고, 외부에서 받은 props를 보여주는 컵포넌트
   handleIncrement = () => {
-    //state 오브젝트 안의 count를 증가한뒤 state업데이트함
-    this.setState({ count: this.state.count + 1 });
+    this.props.onIncrement(this.props.habit);
   };
   handleDecrement = () => {
-    const count = this.state.count - 1;
-    this.setState({ count: count < 0 ? 0 : count });
+    this.props.onDecrement(this.props.habit);
   };
-
+  handleDelete = () => {
+    this.props.onDelete(this.props.habit);
+  };
   render() {
     // console.log(this.props);
     const { name, count } = this.props.habit; // 각각의 데이터 변수에 담기(동일한 이름 써야 함)
@@ -33,7 +31,10 @@ class Habit extends Component {
         >
           <i className='far fa-minus-square'></i>
         </button>
-        <button className='habit-button habit-delete'>
+        <button
+          className='habit-button habit-delete'
+          onClick={this.handleDelete}
+        >
           <i className='fas fa-trash'></i>
         </button>
       </li>

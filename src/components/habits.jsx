@@ -9,11 +9,48 @@ class Habits extends Component {
       { id: 3, name: 'coding', count: 0 }
     ]
   };
+  handleIncrement = habit => {
+    const habits = [...this.state.habits];
+    const index = habits.indexOf(habit);
+    habits[index].count++; //💩복사했어도 직접 수정한 걸 반영하는 것이기 떄문에 좋지 않은 코드
+    /* this.setState({ habits: habits});  key인 habits(왼쪽, state의 habits)에 로컬변수habit(오른쪽)배열을 넣는다<div className=""></div>
+    habits:habits 처럼 key와 value가 동일한 이름이면 하나로 생략 가능 */
+    this.setState({ habits });
+  };
+
+  handleDecrement = habit => {
+    const habits = [...this.state.habits];
+    console.log(habits === this.state.habits);
+    // const index = habits.indexOf(habit);
+    // const count = habits[index].count - 1;
+    // habits[index].count = count < 0 ? 0 : count; //💩
+    // this.setState({ habits });
+  };
+
+  handleDelete = habit => {
+    const habits = [...this.state.habits];
+    const index = habits.indexOf(habit);
+    habits.splice(index, 1);
+    this.setState({ habits });
+
+    //다른 방법 : filter을 이용해서 수정사항을 반영한 배열을 생성함
+    // {
+    //   const habits = this.state.habits.filter(item => item.id !== habit.id);
+    //   this.setState({ habits });
+    // }
+  };
+
   render() {
     return (
       <ul>
         {this.state.habits.map(habit => (
-          <Habit key={habit.id} habit={habit} /> //habit이라는 prop이름에 화살표함수 인자로 받은 각각의 habit 전달
+          <Habit
+            key={habit.id}
+            habit={habit}
+            onIncrement={this.handleIncrement}
+            onDecrement={this.handleDecrement}
+            onDelete={this.handleDelete}
+          /> //habit이라는 prop이름에 화살표함수 인자로 받은 각각의 habit 전달
         ))}
       </ul>
     );
