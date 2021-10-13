@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class Habit extends Component {
-  //Habit는 자체적으로 갖고있는 state는 없고, 외부에서 받은 props를 보여주는 컵포넌트
+  // Habit는 자체적으로 갖고있는 state는 없고, 외부에서 받은 props를 보여주는 컵포넌트
   handleIncrement = () => {
     this.props.onIncrement(this.props.habit);
   };
@@ -21,6 +21,9 @@ class Habit extends Component {
         <button
           className='habit-button habit-increase'
           onClick={this.handleIncrement}
+          // onClick={() => {
+          //   this.props.onIncrement(this.props.habit);
+          // }} handleIncremnt 없이 이렇게 익명함수로 전달 할 수도 있음
         >
           <i className='far fa-plus-square'></i>
         </button>
