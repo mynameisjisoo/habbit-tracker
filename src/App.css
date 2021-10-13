@@ -43,7 +43,7 @@ button {
   padding: 0 0.3em;
 }
 
-/* input field */
+/* habitAddForm */
 .add-form {
   display: flex;
   justify-content: center;
@@ -69,8 +69,12 @@ button {
 }
 
 /* habits */
+.habits {
+  min-height: 15rem;
+}
+
 .habit {
-  display: flex; /*수정함*/
+  display: flex;
   justify-self: center;
   font-size: 2rem;
   padding: 0.5em;
@@ -111,13 +115,14 @@ button {
   color: red;
 }
 
-/* reset button */
-.reset {
+.habits-reset {
   font-size: 2rem;
   width: 10rem;
+  margin-top: 20px;
   padding: 0.2rem 1rem;
-  align-self: center;
   background-color: darkseagreen;
   color: white;
   border-radius: 0.5rem;
+  position: relative;
+  left: 45%;
 }

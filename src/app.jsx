@@ -41,11 +41,25 @@ class App extends Component {
     //   this.setState({ habits });
     //  }
   };
+  handleAdd = name => {
+    const habits = [...this.state.habits, { id: Date.now(), name, count: 0 }]; //name:name <-동일한 이름은 생략가능
+    this.setState({ habits });
+  };
 
   countHabits = () => {
     //카운트가 0개 이상인 habit만 갯수로 계산
     return this.state.habits.filter(habit => habit.count > 0).length;
   };
+  handleReset = () => {
+    const habits = this.state.habits.map(habit => {
+      habit.count = 0;
+      return habit;
+    });
+    console.log(habits[0].count);
+    console.log(this.state.habits[0].count);
+    this.setState({ habits });
+  };
+
   render() {
     return (
       <>
@@ -55,6 +69,8 @@ class App extends Component {
           onIncrement={this.handleIncrement}
           onDecrement={this.handleDecrement}
           onDelete={this.handleDelete}
+          onAdd={this.handleAdd}
+          onReset={this.handleReset}
         />
       </>
     );

@@ -3,11 +3,14 @@ import Habit from './habit';
 import HabitAddForm from './habitAddForm';
 
 class Habits extends Component {
+  handleAdd = name => {
+    this.props.onAdd(name);
+  };
   render() {
     return (
       <>
-        <HabitAddForm />
-        <ul>
+        <HabitAddForm onAdd={this.handleAdd} />
+        <ul className='habits'>
           {this.props.habits.map(habit => (
             <Habit
               key={habit.id}
@@ -18,6 +21,9 @@ class Habits extends Component {
             /> //habit이라는 prop이름에 화살표함수 인자로 받은 각각의 habit 전달
           ))}
         </ul>
+        <button className='habits-reset' onClick={this.props.onReset}>
+          Reset
+        </button>
       </>
     );
   }
