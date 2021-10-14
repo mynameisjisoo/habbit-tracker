@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 class Header extends Component {
   render() {
+    console.log('header');
+
     return (
       <header className='header'>
         <i className=' header-logo fas fa-quidditch'></i>

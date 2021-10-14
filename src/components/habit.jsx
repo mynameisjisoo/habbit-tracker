@@ -13,10 +13,10 @@ class Habit extends Component {
   };
 
   render() {
-    // console.log(this.props);
     const { name, count } = this.props.habit; // 각각의 데이터 변수에 담기(동일한 이름 써야 함)
     return (
       <li className='habit'>
+        {console.log(`habit: ${name}`)}
         <span className='habit-name'>{name}</span>
         <span className='habit-count'>{count}</span>
         <button
@@ -28,7 +28,6 @@ class Habit extends Component {
         >
           <i className='far fa-plus-square'></i>
         </button>
-
         <button
           className='habit-button habit-decrease'
           onClick={this.handleDecrement}

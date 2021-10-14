@@ -61,6 +61,8 @@ class App extends Component {
   };
 
   render() {
+    console.log('app');
+
     return (
       <>
         <Header totalCount={this.countHabits()} />
