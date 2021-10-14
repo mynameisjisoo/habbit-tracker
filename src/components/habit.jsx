@@ -11,6 +11,7 @@ class Habit extends Component {
   handleDelete = () => {
     this.props.onDelete(this.props.habit);
   };
+
   render() {
     // console.log(this.props);
     const { name, count } = this.props.habit; // 각각의 데이터 변수에 담기(동일한 이름 써야 함)

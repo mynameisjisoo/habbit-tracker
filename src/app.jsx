@@ -16,7 +16,7 @@ class App extends Component {
     const habits = [...this.state.habits];
     const index = habits.indexOf(habit);
     habits[index].count++; //💩 spread syntax이용해서 복사해도 다차원객체는 주소값이 복사됨 (=원본객체에 영향줌)
-    /* this.setState({ habits: habits});  key인 habits(왼쪽, state의 habits)에 로컬변수habit(오른쪽)배열을 넣는다<div className=""></div>
+    /* this.setState({ habits: habits});  key인 habits(왼쪽, state의 habits)에 로컬변수habit(오른쪽)배열을 넣는다
     habits:habits 처럼 key와 value가 동일한 이름이면 하나로 생략 가능 */
     this.setState({ habits });
   };
@@ -41,23 +41,23 @@ class App extends Component {
     //   this.setState({ habits });
     //  }
   };
+
   handleAdd = name => {
     const habits = [...this.state.habits, { id: Date.now(), name, count: 0 }]; //name:name <-동일한 이름은 생략가능
+    this.setState({ habits });
+  };
+
+  handleReset = () => {
+    const habits = this.state.habits.map(habit => {
+      habit.count = 0;
+      return habit;
+    });
     this.setState({ habits });
   };
 
   countHabits = () => {
     //카운트가 0개 이상인 habit만 갯수로 계산
     return this.state.habits.filter(habit => habit.count > 0).length;
-  };
-  handleReset = () => {
-    const habits = this.state.habits.map(habit => {
-      habit.count = 0;
-      return habit;
-    });
-    console.log(habits[0].count);
-    console.log(this.state.habits[0].count);
-    this.setState({ habits });
   };
 
   render() {
