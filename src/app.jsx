@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import './app.css';
 import Habits from './components/habits';
 import Header from './components/header';
@@ -13,20 +13,42 @@ class App extends Component {
   };
 
   handleIncrement = habit => {
+    const habits = this.state.habits.map(item => {
+      if (item.id === habit.id) {
+        //해당하는 habit만 골라서
+        return { ...habit, count: habit.count + 1 }; // 다른것 다 똑같이 복사하는데 count만 새 값으로 덮어쓴다
+      }
+      return item;
+    });
+    this.setState({ habits });
+
+    /*💩 spread syntax이용해서 복사해도 다차원객체는 주소값이 복사됨 (=원본객체에 영향줌)
     const habits = [...this.state.habits];
     const index = habits.indexOf(habit);
-    habits[index].count++; //💩 spread syntax이용해서 복사해도 다차원객체는 주소값이 복사됨 (=원본객체에 영향줌)
+    habits[index].count++; */
     /* this.setState({ habits: habits});  key인 habits(왼쪽, state의 habits)에 로컬변수habit(오른쪽)배열을 넣는다
     habits:habits 처럼 key와 value가 동일한 이름이면 하나로 생략 가능 */
-    this.setState({ habits });
+
+    /**
+     * state를 직접 수정하지 않는 이유
+     * this.state.habits[index].count <- 이런식으로 오브젝트안의 데이터를 수정하면
+     * 결국은 동일한 오브젝트이기 때문에 동일하다고 판단해서 렌더링이 일어나지 않음
+     */
   };
 
   handleDecrement = habit => {
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    const count = habits[index].count - 1;
-    habits[index].count = count < 0 ? 0 : count; //💩
+    const habits = this.state.habits.map(item => {
+      if (item.id === habit.id) {
+        const count = habit.count - 1;
+        return { ...habit, count: count < 0 ? 0 : count };
+      }
+      return item;
+    });
     this.setState({ habits });
+    // const habits = [...this.state.habits];
+    // const index = habits.indexOf(habit);
+    // const count = habits[index].count - 1;
+    // habits[index].count = count < 0 ? 0 : count; //💩
   };
 
   handleDelete = habit => {
@@ -49,10 +71,16 @@ class App extends Component {
 
   handleReset = () => {
     const habits = this.state.habits.map(habit => {
-      habit.count = 0;
+      if (habit.count !== 0) {
+        return { ...habit, count: 0 };
+      }
       return habit;
     });
     this.setState({ habits });
+    // const habits = this.state.habits.map(habit => {
+    //   habit.count = 0;
+    //   return habit;
+    // });
   };
 
   countHabits = () => {
@@ -64,7 +92,7 @@ class App extends Component {
     console.log('app');
 
     return (
-      <>
+      <div>
         <Header totalCount={this.countHabits()} />
         <Habits
           habits={this.state.habits}
@@ -74,7 +102,7 @@ class App extends Component {
           onAdd={this.handleAdd}
           onReset={this.handleReset}
         />
-      </>
+      </div>
     );
   }
 }

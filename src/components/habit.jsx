@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class Habit extends Component {
+class Habit extends PureComponent {
   // Habit는 자체적으로 갖고있는 state는 없고, 외부에서 받은 props를 보여주는 컵포넌트
   handleIncrement = () => {
     this.props.onIncrement(this.props.habit);
@@ -14,9 +14,11 @@ class Habit extends Component {
 
   render() {
     const { name, count } = this.props.habit; // 각각의 데이터 변수에 담기(동일한 이름 써야 함)
+
+    console.log(`habit: ${name}`);
+
     return (
       <li className='habit'>
-        {console.log(`habit: ${name}`)}
         <span className='habit-name'>{name}</span>
         <span className='habit-count'>{count}</span>
         <button
