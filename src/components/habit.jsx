@@ -1,6 +1,17 @@
 import React, { PureComponent } from 'react';
 
 class Habit extends PureComponent {
+  //Lifecycle method 상황에 맞게 구현하면 됨
+  componentDidMount() {
+    //컴포넌트가 UI상에 등록될 때 호출(사용자에게 보여질 때)
+    console.log(`habit: ${this.props.habit.name} mounted`);
+  }
+
+  componentWillUnmount() {
+    //컴포넌트가 없어질 때
+    console.log(`habit: ${this.props.habit.name}will unmount`);
+  }
+
   // Habit는 자체적으로 갖고있는 state는 없고, 외부에서 받은 props를 보여주는 컵포넌트
   handleIncrement = () => {
     this.props.onIncrement(this.props.habit);

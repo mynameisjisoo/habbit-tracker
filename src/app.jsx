@@ -40,9 +40,9 @@ class App extends Component {
     const habits = this.state.habits.map(item => {
       if (item.id === habit.id) {
         const count = habit.count - 1;
-        return { ...habit, count: count < 0 ? 0 : count };
+        return { ...habit, count: count < 0 ? 0 : count }; //새로운 객체를 생성해서 리턴해주므로 객체의 참조값이 변경되어 해당 객체만 렌더링
       }
-      return item;
+      return item; //기존 this.state.habits 객체 그대로 리턴함(참조값 변경안되서 렌더링 안되게)
     });
     this.setState({ habits });
     // const habits = [...this.state.habits];
