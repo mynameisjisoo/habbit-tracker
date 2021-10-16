@@ -22,6 +22,7 @@ class App extends Component {
     });
     this.setState({ habits });
 
+    ///
     /*💩 spread syntax이용해서 복사해도 다차원객체는 주소값이 복사됨 (=원본객체에 영향줌)
     const habits = [...this.state.habits];
     const index = habits.indexOf(habit);
