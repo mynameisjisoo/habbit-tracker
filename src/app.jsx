@@ -15,10 +15,10 @@ class App extends Component {
   handleIncrement = habit => {
     const habits = this.state.habits.map(item => {
       if (item.id === habit.id) {
-        //해당하는 habit만 골라서
-        return { ...habit, count: habit.count + 1 }; // 다른것 다 똑같이 복사하는데 count만 새 값으로 덮어쓴다
+        //전달받은 habit의 id (클릭한 habit의 id)와 habits 데이터의 id를 비교해서 같다면 (클릭한 habit이면)
+        return { ...habit, count: habit.count + 1 }; // 나머지 항목을 그대로 복사하면서 count는 +1한 걸 리턴
       }
-      return item;
+      return item; // 클릭하지 않은 항목은 그대로 return item해서 기존의 것 리턴
     });
     this.setState({ habits });
 
