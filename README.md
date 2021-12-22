@@ -2,8 +2,6 @@
 
 ## React 전반적인 개념 정리를 위해 만든 미니 프로젝트
 
-### State, Prop, Class Component, Pure Component, Function Component, memo, React Hook 에 대해 이해할 수 있게 됨
-
 ### [✨ Demo Link ✨](https://mynameisjisoo.github.io/habbit-tracker/)
 
 ### 1. 사용한 기술들
